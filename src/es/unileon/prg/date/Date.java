@@ -3,55 +3,55 @@ package es.unileon.prg.date;
 /* Clase Date con los métodos dados en clase de teoría sobre sentencias de control */
 
 public class Date {
-	private int _day;
-	private int _month;
-	private int _year;
+	private int day;
+	private int month;
+	private int year;
 
 
 	public Date(int day, int month, int year){
-		this._day = day;
-		this._month = month;
-		this._year = year;
+		this.day = day;
+		this.month = month;
+		this.year = year;
 	}
 
 	public Date(){
-		_day = 6;
-		_month = 9;
-		_year = 2010;
+		day = 6;
+		month = 9;
+		year = 2010;
 	}
 
 	public Date(Date another){
-		this._day = another.getDay();
-		this._month = another.getMonth();
-		this._year = another.getYear();
+		this.day = another.getDay();
+		this.month = another.getMonth();
+		this.year = another.getYear();
 	}
 
 	public int getDay(){
-		return _day;
+		return day;
 	}
 
 	public int getMonth(){
-		return _month;
+		return month;
 	}
 
 	public int getYear(){
-		return _year;
+		return year;
 	}
 
 	public void setDay(int day){
-		this._day = day;
+		this.day = day;
 	}
 
 	public void setMonth(int month){
-		this._month =  month;
+		this.month =  month;
 	}
 
 	public void setYear(int year){
-		this._year = year;
+		this.year = year;
 	}
 
 	public boolean isSameDay(Date other){
-		if (this._day == other.getDay()) {
+		if (this.day == other.getDay()) {
 			return true;
 		} else{
 			return false;
@@ -59,7 +59,7 @@ public class Date {
 	}
 
 	public boolean isSameMonth(Date other){
-		if (this._month == other.getMonth()) {
+		if (this.month == other.getMonth()) {
 			return true;
 		} else{
 			return false;
@@ -67,7 +67,7 @@ public class Date {
 	}
 
 	public boolean isSameYear(Date other){
-		if (this._year == other.getYear()) {
+		if (this.year == other.getYear()) {
 			return true;
 		} else{
 			return false;
@@ -83,15 +83,15 @@ public class Date {
 	}
 
 	public boolean isSameDay_NonIf(Date other){
-		return this._day == other.getDay();
+		return this.day == other.getDay();
 	}
 
 	public boolean isSameMonth_NonIf(Date other){
-		return this._month == other.getMonth();
+		return this.month == other.getMonth();
 	}
 
 	public boolean isSameYear_NonIf(Date other){
-		return this._year == other.getYear();
+		return this.year == other.getYear();
 	}
 
 	public boolean isSame_NonIf(Date other){
@@ -101,7 +101,7 @@ public class Date {
 	public String getNameMonth(){
 		String name_Month = null;
 
-		switch(this._month){
+		switch(this.month){
 			case 1:
 				name_Month = "January";
 				break;
@@ -155,9 +155,55 @@ public class Date {
 	}
 
 	public boolean isDayOfTheMonthRight(){
-		int numDaysOfTheMonth;
+		
 
-		switch(this._month){
+	}
+
+	public String getSeason(){
+		String season = null;
+
+		switch(this.month){
+			case 3:
+			case 4:
+			case 5:
+			case 6:
+				season = "Primavera";
+			break;
+
+			case 7:
+			case 8:
+			case 9:
+				season = "Verano";
+			break;
+
+			case 10:
+			case 11:
+				season = "Otoño";
+			break;
+
+			case 12:
+			case 1:
+			case 2:
+				season = "Invierno"; 
+		}
+
+		return season;
+	}
+
+	private int getNumDaysOfTheMonth(){
+		int numDaysOfTheMonth = 0;
+
+		switch(this.month){
+			case 2:
+				numDaysOfTheMonth = 28;
+			break;
+
+			case 4:
+			case 6:
+			case 9:
+			case 11:
+				numDaysOfTheMonth = 30;
+
 			case 1:
 			case 3:
 			case 5:
@@ -165,24 +211,7 @@ public class Date {
 			case 8:
 			case 10:
 			case 12:
-
-				break;
-
-			case 2:
-
-				break;
-
-			case 4:
-			case 6:
-			case 9:
-			case 11:
-
-				break;
+				numDaysOfTheMonth = 31;
 		}
-
-	}
-
-	public String season(){
-
 	}
 }
