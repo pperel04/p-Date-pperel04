@@ -154,9 +154,12 @@ public class Date {
 		return name_Month;
 	}
 
-	public boolean isDayOfTheMonthRight(){
-		
-
+	private boolean isDayOfTheMonthRight(int day){
+		if ((day > 0) && (day <= this.getNumDaysOfTheMonth(this.month))) {
+			return true;
+		} else{
+			return false;
+		}
 	}
 
 	public String getSeason(){
@@ -190,7 +193,11 @@ public class Date {
 		return season;
 	}
 
-	private int getNumDaysOfTheMonth(){
+	public int getNumDaysOfTheMonth(){
+		return this.getNumDaysOfTheMonth(this.month);
+	}
+
+	private int getNumDaysOfTheMonth(int month){
 		int numDaysOfTheMonth = 0;
 
 		switch(this.month){
@@ -212,6 +219,68 @@ public class Date {
 			case 10:
 			case 12:
 				numDaysOfTheMonth = 31;
+
+			default:
+				numDaysOfTheMonth = -1;
 		}
+
+		return numDaysOfTheMonth;
 	}
+
+	public String toString(){
+		return this.day + "/" + this.month + "/" + this.year;
+	}
+
+	public String monthLeftUntilEndOfYear(){
+
+		Date counter = new Date(this);
+		StringBuffer monthsLeft = new StringBuffer();
+
+		for (int i = this.month + 1; i <= 12; i++) {
+			 counter.setMonth(i);
+			 monthsLeft.append(counter.getNameMonth() + " ");
+		}
+
+		return monthsLeft.toString();
+	}
+
+	public String daysLeftUntilEndOfMonth(){
+		Date counter = new Date(this);
+		StringBuffer daysLeft = new StringBuffer();
+
+		for (int i = this.day +1; isDayOfTheMonthRight(i); i++) {
+			counter.setDay(i);
+			daysLeft.append(counter.toString() + " ");
+		}
+
+		return daysLeft.toString();
+	}
+
+	public String monthsSameNumberDays(){
+		Date counter = new Date(this);
+		StringBuffer monthsSame = new StringBuffer();
+
+		for (int i = 1; i <= 12; i++) {
+			counter.setMonth(i);
+			if (counter.getNumDaysOfTheMonth() == this.getNumDaysOfTheMonth()) {
+				monthsSame.append(counter.getNameMonth() + " ");
+			}
+		}
+
+		return monthsSame.toString();
+	}
+
+	public int daysSinceBegginingOfTheYear(){
+		int daysSinceBeggining = 0;
+		Date counter = new Date(1,1,this.year);
+
+		for (int i = 1; i <= this.month; i++) {
+			daysSinceBeggining = daysSinceBeggining + counter.getNumDaysOfTheMonth();
+			counter.setMonth(i+1);
+		}
+			daysSinceBeggining = daysSinceBeggining + this.day - 1;
+
+		return 	daysSinceBeggining;
+	}
+
 }
