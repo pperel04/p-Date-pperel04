@@ -283,4 +283,73 @@ public class Date {
 		return 	daysSinceBeggining;
 	}
 
+	public int attemptsRandomDateEqualsDate_While(){
+		int attempts = 0, dayRandom = 0, monthRandom = 0, yearRandom = 0;
+
+		while(!this.isSame(new Date(dayRandom, monthRandom, yearRandom))){
+			monthRandom = (int) (Math.random()*12) + 1;
+			dayRandom = (int) (Math.random()*this.getNumDaysOfTheMonth(monthRandom)) + 1;
+			yearRandom = this.year;
+			attempts = attempts + 1;
+		}
+		return attempts;
+	}
+
+	public int attemptsRandomDateEqualsDate_DoWhile(){
+		int attempts = 0, dayRandom, monthRandom, yearRandom;
+
+		do{
+			monthRandom = (int) (Math.random()*12) + 1;
+			dayRandom = (int) (Math.random()*this.getNumDaysOfTheMonth(monthRandom)) + 1;
+			yearRandom = this.year;
+			attempts = attempts + 1;			
+		} while(!this.isSame(new Date(dayRandom, monthRandom, yearRandom)));
+		
+		return attempts;
+	}
+
+	private String getDayOfTheWeek(int day){
+		String nameOfTheWeek = null;
+
+		switch(day){
+			case 1:
+				nameOfTheWeek = "Monday";
+			break;
+
+			case 2:
+				nameOfTheWeek = "Tuesday";
+			break;
+
+			case 3:
+				nameOfTheWeek = "Wednesday";
+			break;
+
+			case 4:
+				nameOfTheWeek = "Thursday";
+			break;
+
+			case 5:
+				nameOfTheWeek = "Friday";
+			break;
+
+			case 6:
+				nameOfTheWeek = "Saturday";
+			break;
+
+			case 7:
+				nameOfTheWeek = "Sunday";
+			break;
+
+			default:
+				nameOfTheWeek = "Wrong day of the week";
+			break;
+		}
+
+		return nameOfTheWeek;
+	}
+
+	/*public String dayOfTheWeek(int firstOfJanuary){
+		
+	}*/
+
 }
